@@ -1,2 +1,2 @@
 # Football
-a foot ball field reanting and scheduling website 
+a foot ball field renting and scheduling website 
