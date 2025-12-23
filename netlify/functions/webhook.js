@@ -28,6 +28,11 @@ exports.handler = async function(event) {
     const paymentIntent = session.payment_intent;
 
     // Update DB and send confirmation email
+    if (!DATABASE_URL) {
+      console.error('webhook: DATABASE_URL not configured');
+      return { statusCode: 500, body: JSON.stringify({ error: 'DATABASE_URL not configured' }) };
+    }
+
     try {
       const client = new Client({ connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } });
       await client.connect();
