@@ -1,0 +1,144 @@
+/* main/style.css
+   Friendly, colourful mobile-first stylesheet.
+   Mobile default, richer desktop layout at >=900px.
+*/
+
+/* Use a friendly rounded typeface */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root{
+  --bg: linear-gradient(180deg,#f0fbff 0%, #fff7fb 100%);
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --accent-1: #06b6d4; /* teal */
+  --accent-2: #34d399; /* green */
+  --accent-3: #7c3aed; /* purple */
+  --accent-4: #ff7a59; /* warm orange */
+  --shadow-sm: 0 6px 24px rgba(12,44,84,0.06);
+  --shadow-md: 0 18px 48px rgba(12,44,84,0.09);
+  --radius: 16px;
+  --max-width: 1100px;
+  --gap: 1rem;
+  --container-padding: 1rem;
+  --font-sans: 'Poppins', Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial;
+}
+
+/* Reset / base */
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  color:#071133;
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  padding:1.25rem;
+}
+
+.container{max-width:var(--max-width);margin:0 auto;padding:0 var(--container-padding)}
+
+/* Header / hero */
+header{display:flex;flex-direction:column;align-items:center;gap:0.5rem;text-align:center}
+.logo{width:88px;height:88px;border-radius:18px;object-fit:cover;border:3px solid rgba(255,255,255,0.6);box-shadow:var(--shadow-sm);background:linear-gradient(135deg,var(--accent-1),var(--accent-4))}
+header h1{font-size:1.6rem;margin:0;color:#04203a}
+header p{margin:0;color:var(--muted);font-size:0.98rem}
+
+/* Navigation */
+nav{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem}
+nav a{display:inline-block;color:#073b4c;text-decoration:none;padding:0.5rem 0.9rem;border-radius:999px;font-weight:600;background:linear-gradient(90deg,rgba(255,255,255,0.6),rgba(255,255,255,0.2));box-shadow:inset 0 -2px 0 rgba(0,0,0,0.03);transition:all .18s ease}
+nav a:hover,nav a:focus{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+
+/* Main layout */
+main{margin-top:1rem;display:block}
+.card{background:var(--surface);padding:1.1rem;border-radius:14px;box-shadow:var(--shadow-sm);border:1px solid rgba(12,44,84,0.04);margin-bottom:1rem}
+.card h2{margin-top:0;font-size:1.15rem;color:#04203a}
+
+/* Visual accents */
+.accent-pill{display:inline-block;padding:0.25rem 0.6rem;border-radius:999px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#fff;font-weight:700;font-size:0.85rem}
+
+/* Buttons */
+.btn{display:inline-block;padding:0.55rem 0.9rem;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent-3),var(--accent-4));color:#fff;font-weight:700;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .12s ease,box-shadow .12s ease}
+.btn.secondary{background:transparent;color:var(--accent-3);border:1px solid rgba(124,58,237,0.12)}
+.btn:active{transform:translateY(1px)}
+
+/* Forms */
+.form-row{margin-bottom:0.6rem}
+input[type="text"],input[type="email"],input[type="date"],input[type="time"],input[type="number"],textarea,select{
+  width:100%;padding:0.7rem 0.9rem;border-radius:12px;border:1px solid rgba(12,44,84,0.06);background:#fff;font-size:0.98rem;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.02)
+}
+textarea{resize:vertical}
+
+/* Footer */
+footer{margin-top:1.5rem;color:var(--muted);text-align:center;font-size:0.95rem}
+
+/* Inline code */
+code{background:#fff0f6;padding:0.12rem 0.35rem;border-radius:6px;font-family:SFMono-Regular,Menlo,monospace;font-size:0.95rem}
+
+/* Utility */
+.muted{color:var(--muted)}
+
+/* Contact form small tweaks */
+.contact-form .form-row{margin-bottom:0.6rem}
+.contact-form button{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#fff;border:0;padding:0.6rem 0.95rem;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow-sm)}
+.contact-form button:hover{opacity:0.98}
+
+/* Gallery / Carousel */
+.carousel{position:relative;width:100%;height:260px;border-radius:14px;overflow:hidden;border:1px solid rgba(12,44,84,0.06);background:linear-gradient(180deg,#fff,#f0fbff)}
+.carousel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease,transform .6s ease}
+.carousel img.active{opacity:1;transform:scale(1)}
+.carousel img:not(.active){transform:scale(1.02)}
+.carousel .caption{position:absolute;left:1rem;bottom:1rem;color:#fff;background:linear-gradient(90deg,rgba(7,59,76,0.6),rgba(124,58,237,0.6));padding:0.35rem 0.6rem;border-radius:8px;font-size:0.95rem}
+.carousel .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;gap:0.4rem;z-index:35}
+.carousel .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);opacity:0.95;border:2px solid rgba(0,0,0,0.04)}
+.carousel .dot.active{background:#fff}
+
+/* Pause on hover */
+
+
+/* Desktop layout adjustments */
+@media (min-width:900px){
+  body{padding:2.5rem}
+  header{flex-direction:row;align-items:center;text-align:left}
+  .logo{width:110px;height:110px;border-radius:20px}
+  header > div{flex:1}
+  nav{justify-content:flex-end}
+  /* Keep main sections stacked vertically by default; use .two-col when a side column layout is needed */
+  main{display:block}
+  .two-col{display:flex;gap:1.25rem;align-items:flex-start}
+  .main-col{flex:1}
+  .aside{width:360px}
+  .card{padding:1.25rem;border-radius:16px;box-shadow:var(--shadow-md)}
+  .carousel{height:420px}
+}
+
+/* Accessibility */
+a:focus{outline:3px solid rgba(124,58,237,0.18);outline-offset:3px}
+
+/* Small neat touch for inline links */
+a.inline{color:var(--accent-3);text-decoration:underline}
+
+/* End of stylesheet */
+
+/* Carousel controls */
+.carousel-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:0;
+  background:linear-gradient(90deg,rgba(7,59,76,0.85),rgba(124,58,237,0.85));
+  color:#fff;
+  font-size:22px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:var(--shadow-sm);z-index:30;opacity:0.95
+}
+.carousel-btn:hover{transform:translateY(-50%) scale(1.03)}
+.carousel-btn.prev{left:12px}
+.carousel-btn.next{right:12px}
+.carousel .dot{cursor:pointer}
+

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Schedule — Simple Page</title>
+  <link rel="stylesheet" href="schedule.css">
+</head>
+<body>
+  <header>
+    <div class="page-header">
+      <a class="back-link" href="..\index.html">← Back</a>
+      <h1>Schedule</h1>
+      <img src="../photo/image1.jpg" alt="Football field" class="header-photo">
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Upcoming schedule</h2>
+      <p>Below is the team's upcoming schedule. Replace with your real events.</p>
+      <ul id="upcoming-list">
+        <li class="muted">Loading upcoming schedule…</li>
+      </ul>
+    </section>
+
+    <section class="card" id="available">
+      <h2>Available booking slots</h2>
+      <p>Choose an available field and time below — click "Book" to prefill the registration form.</p>
+      <div class="slot-filters" style="margin-bottom:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+        <label class="muted" for="filter-field">Field</label>
+        <select id="filter-field" aria-label="Filter by field">
+          <option value="none">Choose field</option>
+        </select>
+
+        <label class="muted" for="filter-time">Time</label>
+        <select id="filter-time" aria-label="Filter by time">
+          <option value="none">Choose time</option>
+        </select>
+
+        <label class="muted" for="filter-date">Date</label>
+        <input id="filter-date" type="date" />
+
+        <button id="filter-clear" class="btn secondary" type="button">Clear</button>
+      </div>
+
+      <div id="slots-list">
+        <!-- slots inserted by JavaScript -->
+      </div>
+    </section>
+
+    <section class="card" id="register">
+      <h2>Register for a slot</h2>
+      <p>Choose a date and time and pay to confirm your booking.</p>
+      <form id="booking-form">
+        <div class="form-row">
+          <input type="text" name="name" id="name" placeholder="Full name" required>
+        </div>
+        <div class="form-row">
+          <input type="email" name="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="form-row">
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date" required>
+        </div>
+        <div class="form-row">
+          <label for="time">Time</label>
+          <input type="time" name="time" id="time" required>
+        </div>
+        <div class="form-row">
+          <label for="amount">Payment</label>
+          <input type="number" name="amount" id="amount" value="10.00" step="0.01" min="0">
+          <input type="hidden" name="field" id="field" value="">
+        </div>
+        <div class="form-row">
+          <button id="pay-btn" type="submit">Pay & Register</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Notes</h2>
+      <p>Arrive 45 minutes early for warm-up. Bring appropriate kit and ID. Check the site map and travel plans before away matches.</p>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p style="margin:0">&copy; 2025 Your Club</p>
+  </footer>
+  <div style="max-width:980px;margin:1rem auto;padding:0 1rem;text-align:center">
+    <a href="register-field.html" class="btn secondary">Register a new field</a>
+  </div>
+  <script src="schedule.js" defer></script>
+</body>
+</html>

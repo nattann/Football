@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Register a Field</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="container" style="padding-top:1.5rem">
+    <a href="..\index.html" class="back-link">← Back</a>
+    <h1>Register a Field</h1>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <p>Use this form to register a new field with our platform. We'll review submissions and contact you.</p>
+      <form id="field-form">
+        <div class="form-row">
+          <input type="text" id="field-name" name="field_name" placeholder="Field name (e.g. Field 1)" required>
+        </div>
+        <div class="form-row">
+          <input type="text" id="location" name="location" placeholder="Location / address" required>
+        </div>
+        <div class="form-row">
+          <label for="surface">Surface</label>
+          <select id="surface" name="surface">
+            <option>Grass</option>
+            <option>Artificial</option>
+            <option>Hybrid</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label><input type="checkbox" id="lights" name="lights"> Floodlights available</label>
+        </div>
+        <div class="form-row">
+          <label for="open-time">Open time</label>
+          <input type="time" id="open-time" name="open_time">
+        </div>
+        <div class="form-row">
+          <label for="close-time">Close time</label>
+          <input type="time" id="close-time" name="close_time">
+        </div>
+        <div class="form-row">
+          <input type="email" id="contact-email" name="contact_email" placeholder="Contact email" required>
+        </div>
+        <div class="form-row">
+          <input type="tel" id="contact-phone" name="contact_phone" placeholder="Contact phone">
+        </div>
+        <div class="form-row">
+          <button class="btn" type="submit">Submit registration</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="page-footer container">
+    <p>&copy; 2025 Football Field Booking</p>
+  </footer>
+
+  <script>
+    document.getElementById('field-form')?.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const payload = {
+        name: document.getElementById('field-name').value,
+        location: document.getElementById('location').value,
+        surface: document.getElementById('surface').value,
+        lights: document.getElementById('lights').checked,
+        contact_email: document.getElementById('contact-email').value,
+        contact_phone: document.getElementById('contact-phone').value,
+        open_time: document.getElementById('open-time').value || null,
+        close_time: document.getElementById('close-time').value || null
+      };
+      try{
+        const res = await fetch('/.netlify/functions/create-field', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (res.ok) {
+          // Optionally show a brief confirmation then return to home
+          alert('Thanks — ' + payload.name + ' has been registered. You will be redirected to the home page.');
+          // Redirect to the site root (home)
+          window.location = '../index.html';
+        } else {
+          alert('Registration failed: ' + (data && data.error) );
+        }
+      } catch(err){
+        console.error(err);
+        alert('Network error. Try again.');
+      }
+    });
+  </script>
+</body>
+</html>

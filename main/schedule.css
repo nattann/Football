@@ -1,0 +1,49 @@
+/* main/schedule.css — page specific styles for schedule.html */
+@import url("style.css"); /* base styles from main/style.css, then override/page-specific rules below */
+
+.page-header{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  max-width:980px;
+  margin:1.5rem auto;
+  padding:0 1rem;
+}
+.page-header .back-link{
+  text-decoration:none;
+  color:inherit;
+  font-weight:700;
+  padding:0.15rem 0.25rem;
+  border-radius:6px;
+}
+.page-header .back-link:hover{background:rgba(11,102,208,0.06)}
+
+.page-header h1{margin:0;font-size:1.25rem}
+
+/* small header thumbnail for schedule page */
+.page-header .header-photo{
+  width:120px;
+  height:80px;
+  object-fit:cover;
+  border-radius:8px;
+  margin-left:auto;
+  box-shadow:var(--shadow-sm);
+  border:1px solid rgba(12,44,84,0.04);
+}
+
+/* hide thumbnail on very small screens to preserve space */
+@media (max-width:540px){
+  .page-header .header-photo{display:none}
+}
+
+.container{max-width:980px;margin:0 auto;padding:0 1rem}
+
+.card{margin-bottom:1rem}
+
+.page-footer{max-width:980px;margin:1.25rem auto;padding:0 1rem;color:var(--muted);text-align:center}
+
+/* Small responsive tweak */
+@media (min-width:900px){
+  .page-header{margin:2rem auto}
+  .page-header h1{font-size:1.5rem}
+}

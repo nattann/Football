@@ -1,0 +1,13 @@
+{
+  "name": "football-site",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "stripe": "^11.0.0",
+    "pg": "^8.0.0",
+    "@sendgrid/mail": "^7.0.0"
+  }
+}
