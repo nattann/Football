@@ -1,3 +1,7 @@
+const { Client } = require('pg');
+
+const DATABASE_URL = process.env.DATABASE_URL;
+const client = new Client({ connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } });
 (function(){
   const form = document.getElementById('field-form');
   if (!form) return;
