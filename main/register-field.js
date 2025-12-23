@@ -1,13 +1,10 @@
-const { Client } = require('pg');
-
-const DATABASE_URL = process.env.DATABASE_URL;
-const client = new Client({ connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } });
-(function(){
+(function () {
   const form = document.getElementById('field-form');
   if (!form) return;
 
-  form.addEventListener('submit', async function(e){
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
+
     const payload = {
       name: document.getElementById('field-name').value,
       location: document.getElementById('location').value,
@@ -19,24 +16,25 @@ const client = new Client({ connectionString: DATABASE_URL, ssl: { rejectUnautho
       close_time: document.getElementById('close-time').value || null
     };
 
-    try{
+    try {
       const res = await fetch('/.netlify/functions/create-field', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      const data = await res.json().catch(()=>null);
-      if (res.ok) {
-        // Optionally show a brief confirmation then return to home
-        alert('Thanks — ' + payload.name + ' has been registered. You will be redirected to the home page.');
-        // Redirect to the site root (home)
-        window.location = '../index.html';
-      } else {
-        alert('Registration failed: ' + (data && data.error) );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Server error');
       }
-    } catch(err){
+
+      alert(`Thanks — ${payload.name} has been registered.`);
+      window.location.href = '../index.html';
+
+    } catch (err) {
       console.error(err);
-      alert('Network error. Try again.');
+      alert('Network or server error. Check console logs.');
     }
   });
 })();
